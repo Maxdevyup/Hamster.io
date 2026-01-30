@@ -1,16 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://du6craveeba0a"]
+[gd_scene load_steps=4 format=3 uid="uid://du6craveeba0a"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_f88e2"]
+[ext_resource type="Script" uid="uid://x7mv3lcu4swl" path="res://hamster.gd" id="1_ts32c"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_ts32c"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ts32c"]
 
-[node name="Hamster" type="Node3D"]
+[sub_resource type="BoxMesh" id="BoxMesh_s70uv"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_ts32c")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-shape = SubResource("BoxShape3D_f88e2")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ts32c")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
-mesh = SubResource("BoxMesh_ts32c")
-skeleton = NodePath("../..")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_s70uv")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 2.88
+path_height_offset = 0.1
+path_max_distance = 9.61

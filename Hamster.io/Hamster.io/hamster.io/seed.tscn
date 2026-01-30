@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://vvsdysolnepa"]
+
+[ext_resource type="Script" uid="uid://dnv468eghq01t" path="res://seed.gd" id="1_a1cqr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4yn3a"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_a1cqr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_24r2x"]
+albedo_color = Color(0.7201275, 0.46066952, 0.27849892, 1)
+
+[node name="Seed" type="Node3D"]
+script = ExtResource("1_a1cqr")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_4yn3a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("SphereMesh_a1cqr")
+surface_material_override/0 = SubResource("StandardMaterial3D_24r2x")

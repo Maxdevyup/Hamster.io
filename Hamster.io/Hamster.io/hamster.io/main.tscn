@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpb7ptebrescm"]
+[gd_scene load_steps=11 format=3 uid="uid://dpb7ptebrescm"]
 
 [ext_resource type="Script" uid="uid://b5rvkb6k6o5v2" path="res://camera_pivot.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://vvsdysolnepa" path="res://seed.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://du6craveeba0a" path="res://hamster.tscn" id="3_h2yge"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7dm0k"]
 
@@ -11,6 +13,16 @@ size = Vector3(60, 2, 60)
 
 [sub_resource type="BoxMesh" id="BoxMesh_0xm2m"]
 size = Vector3(5, 5, 5)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_0xm2m"]
+vertices = PackedVector3Array(-30.5, 1.6873474, -30.5, -30.5, 1.6873474, 30.5, 30.5, 1.6873474, 30.5, 30.5, 1.6873474, -30.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h2yge"]
+size = Vector2(62, 62)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bvp3"]
+albedo_color = Color(0.90960705, 0.8539508, 0.9385288, 1)
 
 [node name="Main" type="Node"]
 
@@ -41,7 +53,7 @@ light_angular_distance = 45.87
 directional_shadow_mode = 1
 
 [node name="Test cube" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22328854, 12.587307, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22328854, 15.545351, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Test cube"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
@@ -49,3 +61,19 @@ shape = SubResource("BoxShape3D_ig7tw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Test cube"]
 mesh = SubResource("BoxMesh_0xm2m")
+
+[node name="Seed" parent="." instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 7, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34061337, 0)
+navigation_mesh = SubResource("NavigationMesh_0xm2m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1873474, 0)
+visible = false
+mesh = SubResource("PlaneMesh_h2yge")
+surface_material_override/0 = SubResource("StandardMaterial3D_1bvp3")
+
+[node name="Hamster" parent="." instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.096006, 1.5995066, 14.403297)
