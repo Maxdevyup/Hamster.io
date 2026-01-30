@@ -12,7 +12,9 @@ func _process(delta: float) -> void:
 		rotation.y -= 1.0 * delta
 	if Input.is_action_pressed("Rotate_right"):
 		rotation.y += 1.0 * delta
-	if Input.is_action_pressed("Z_test") :#and cam.position.z <= -200
-		cam.position.z -= 10 * delta
-	if Input.is_action_pressed("S_test") :#and cam.position.z <= -200
-		cam.position.z += 10 * delta
+	if Input.is_action_pressed("Z_test") :
+		if cam.position.z >= -1.5:
+			cam.position.z -= 15 * delta
+	if Input.is_action_pressed("S_test") :
+		if cam.position.z <= +50:
+			cam.position.z += 15 * delta

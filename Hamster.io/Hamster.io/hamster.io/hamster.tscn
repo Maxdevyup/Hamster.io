@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://du6craveeba0a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f88e2"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ts32c"]
+
+[node name="Hamster" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("BoxShape3D_f88e2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("BoxMesh_ts32c")
+skeleton = NodePath("../..")
